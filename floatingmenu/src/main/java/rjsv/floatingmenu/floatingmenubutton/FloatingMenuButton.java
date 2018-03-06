@@ -7,6 +7,8 @@ import android.graphics.PathMeasure;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -60,6 +62,7 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
     private FloatingMenuStateChangeListener stateChangeListener;
     private FloatingMenuButtonClickListener floatingMenuActionButtonClickListener;
     private AnimationType animationType;
+
     // private touch related
     private float startPositionX, startPositionY;
     private float currentPositionX, currentPositionY;
@@ -96,8 +99,9 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
 
             AnimationSet animation = new AnimationSet(false); //change to false
             animation.addAnimation(fadeOut);
-            if (!floatingMenuButton.isMenuOpen())
+            if (!floatingMenuButton.isMenuOpen()) {
                 floatingMenuButton.startAnimation(animation);
+            }
         }
     };
 
@@ -132,13 +136,16 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
             setEndAngle(this.preservedEndAngle, false);
             a.recycle();
         }
+
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 toggleMenu();
             }
         });
+
         setOnTouchListener(this);
+
         if (menuAnimationHandler != null) {
             menuAnimationHandler.setMenu(FloatingMenuButton.this);
         }
@@ -298,8 +305,41 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
         viewHeight = getMeasuredHeight();
     }
 
+    @Override
+    public void setBackground(Drawable background) {
+        super.setBackground(background);
+    }
 
+    /**
+     * Set the background and icon of the button
+     *
+     * @param background Resource ID
+     * @param icon       Resource ID
+     */
+    public void setBackgroundWithIcon(int background, int icon) {
+        Drawable drawableBackground = getResources().getDrawable(background);
+        Drawable drawableIcon = getResources().getDrawable(icon);
+
+        setBackgroundWithIcon(drawableBackground, drawableIcon);
+    }
+
+    /**
+     * Set the background and icon of the button
+     */
+    public void setBackgroundWithIcon(Drawable background, Drawable icon) {
+        setBackground(getLayerDrawable(background, icon));
+    }
     // General Methods
+
+    /**
+     * Combine two drawables into one
+     *
+     * @return a combination of the images
+     */
+    private LayerDrawable getLayerDrawable(Drawable... image) {
+        return new LayerDrawable(image);
+    }
+
     @Override
     public void setOnClickListener(OnClickListener l) {
         floatingMenuActionButtonClickListener.addClickListener(l);

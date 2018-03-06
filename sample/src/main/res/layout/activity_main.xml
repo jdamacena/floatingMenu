@@ -5,10 +5,9 @@
 	android:id="@+id/pai"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:layout_gravity="center_vertical"
-	android:background="#22222A">
+	android:layout_gravity="center_vertical">
 
-	<android.support.constraint.Guideline
+    <android.support.constraint.Guideline
 		android:id="@+id/gl_1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -24,10 +23,11 @@
 
 	<rjsv.floatingmenu.floatingmenubutton.FloatingMenuButton
 		android:id="@+id/fab_2"
-		android:layout_width="60dp"
-		android:layout_height="60dp"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
 		android:scaleType="centerInside"
-		app:layout_constraintBottom_toTopOf="@+id/gl_2"
+        android:background="@drawable/circle_background"
+        app:layout_constraintBottom_toTopOf="@+id/gl_2"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/gl_1"
@@ -38,32 +38,32 @@
 		<rjsv.floatingmenu.floatingmenubutton.subbutton.FloatingSubButton
 			android:id="@+id/fab_2_sub_fab_left_1"
 			android:layout_width="50dp"
-			android:layout_height="50dp"
-			android:background="@drawable/one"/>
+            android:background="@drawable/circle_background"
+			android:layout_height="50dp"/>
 
 		<rjsv.floatingmenu.floatingmenubutton.subbutton.FloatingSubButton
 			android:id="@+id/fab_2_sub_fab_left_2"
 			android:layout_width="50dp"
-			android:layout_height="50dp"
-			android:background="@drawable/two"/>
+            android:background="@drawable/circle_background"
+			android:layout_height="50dp"/>
 
 		<rjsv.floatingmenu.floatingmenubutton.subbutton.FloatingSubButton
 			android:id="@+id/fab_2_sub_fab_left_3"
 			android:layout_width="50dp"
 			android:layout_height="50dp"
-			android:background="@drawable/three"/>
+            android:background="@drawable/circle_background"/>
 
 		<rjsv.floatingmenu.floatingmenubutton.subbutton.FloatingSubButton
 			android:id="@+id/fab_2_sub_fab_left_4"
 			android:layout_width="50dp"
 			android:layout_height="50dp"
-			android:background="@drawable/four"/>
+            android:background="@drawable/circle_background"/>
 
 		<rjsv.floatingmenu.floatingmenubutton.subbutton.FloatingSubButton
 			android:id="@+id/fab_2_sub_fab_left_5"
 			android:layout_width="50dp"
-			android:layout_height="50dp"
-			android:background="@drawable/five"/>
+            android:background="@drawable/circle_background"
+			android:layout_height="50dp"/>
 
 	</rjsv.floatingmenu.floatingmenubutton.FloatingMenuButton>
 
