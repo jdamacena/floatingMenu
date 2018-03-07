@@ -283,7 +283,8 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
         if (child instanceof FloatingSubButton) {
             if (params == null) {
                 if (subMenuButtons.isEmpty()) {
-                    params = new ViewGroup.LayoutParams(120, 120);
+                    int dimension = (int) getResources().getDimension(R.dimen.default_size_sub_button);
+                    params = new ViewGroup.LayoutParams(dimension, dimension);
                 } else {
                     params = subMenuButtons.get(0).getView().getLayoutParams();
                 }
