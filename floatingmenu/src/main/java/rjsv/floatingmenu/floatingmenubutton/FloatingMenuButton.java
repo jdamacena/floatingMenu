@@ -53,6 +53,7 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
     private int startAngle = 0, endAngle = 180;
     private int preservedStartAngle = 0, preservedEndAngle = 180;
     private int radius;
+    private int stickedToSidesPadding = 0;
     private int transparentAfterMilliseconds = 2000;
     private MovementStyle movementStyle = MovementStyle.FREE;
     private boolean isMenuOpened = false;
@@ -194,9 +195,9 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
 
                             // Force the button to stick either to right or left of the screen
                             if (currentPositionX >= screenWidth / 2) {
-                                currentPositionX = screenWidth - viewWidth;
+                                currentPositionX = screenWidth - viewWidth - getStickedToSidesPadding();
                             } else {
-                                currentPositionX = 0;
+                                currentPositionX = getStickedToSidesPadding();
                             }
 
                             // set the coordinates
@@ -312,22 +313,22 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
 
     /**
      * Set the background and icon of the button
-     *
-     * @param background Resource ID
+     *  @param background Resource ID
      * @param icon       Resource ID
      */
-    public void setBackgroundWithIcon(int background, int icon) {
+    public FloatingMenuButton setBackgroundWithIcon(int background, int icon) {
         Drawable drawableBackground = getResources().getDrawable(background);
         Drawable drawableIcon = getResources().getDrawable(icon);
 
-        setBackgroundWithIcon(drawableBackground, drawableIcon);
+        return setBackgroundWithIcon(drawableBackground, drawableIcon);
     }
 
     /**
      * Set the background and icon of the button
      */
-    public void setBackgroundWithIcon(Drawable background, Drawable icon) {
+    public FloatingMenuButton setBackgroundWithIcon(Drawable background, Drawable icon) {
         setBackground(getLayerDrawable(background, icon));
+        return this;
     }
     // General Methods
 
@@ -700,5 +701,14 @@ public class FloatingMenuButton extends FrameLayout implements View.OnTouchListe
 
     public int getTransparentAfterMilliseconds() {
         return transparentAfterMilliseconds;
+    }
+
+    public FloatingMenuButton setStickedToSidesPadding(int stickedToSidesPadding) {
+        this.stickedToSidesPadding = stickedToSidesPadding;
+        return this;
+    }
+
+    public int getStickedToSidesPadding() {
+        return stickedToSidesPadding;
     }
 }

@@ -8,6 +8,7 @@ import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import rjsv.floatingmenu.animation.enumerators.AnimationType;
 import rjsv.floatingmenu.floatingmenubutton.FloatingMenuButton;
 import rjsv.floatingmenu.floatingmenubutton.MovementStyle;
+import rjsv.floatingmenu.floatingmenubutton.subbutton.FloatingSubButton;
 
 public class MainActivity extends Activity {
 
@@ -28,7 +29,8 @@ public class MainActivity extends Activity {
                 .setRadius(200)
                 .setAnimationType(AnimationType.EXPAND)
                 .setMovementStyle(MovementStyle.STICKED_TO_SIDES)
-                .setBackgroundWithIcon(R.drawable.circle_background, R.drawable.one);
+                .setBackgroundWithIcon(R.drawable.circle_background, R.drawable.one)
+                .setStickedToSidesPadding(10);
 
         fab_1.getAnimationHandler()
                 .setOpeningAnimationDuration(500)
@@ -57,6 +59,11 @@ public class MainActivity extends Activity {
                 .shouldFade(true)
                 .shouldScale(true)
                 .shouldRotate(false);
+
+        FloatingSubButton floatingSubButton = new FloatingSubButton(this);
+        floatingSubButton.setBackgroundWithIcon(R.drawable.circle_background, R.drawable.three);
+
+        fab_1.addFloatingSubButton(floatingSubButton);
 
     }
 }
